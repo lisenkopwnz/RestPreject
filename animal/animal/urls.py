@@ -19,9 +19,15 @@ from django.db import router
 from django.urls import path, include
 from rest_framework import routers
 
-from animal1.views import AnimalAPIView
+from animal1.views import *
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'animal',AnimalViewSet)
+print(router.urls)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/animal_list/', AnimalAPIView.as_view())
+    path('api/v1/', include(router.urls)),
+
 ]
